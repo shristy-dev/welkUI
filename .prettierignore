@@ -1,0 +1,7 @@
+node_modules
+dist
+storybook-static
+pnpm-lock.yaml
+assets
+.next
+next-env.d.ts

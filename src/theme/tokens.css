@@ -1,0 +1,11 @@
+:root {
+  --welk-color-paper: #fffdf5;
+  --welk-color-ink: #242424;
+  --welk-color-accent: #ffda57;
+  --welk-color-accent-hover: #f3c83d;
+  --welk-color-focus: #3057c4;
+  --welk-color-muted: #efede5;
+  --welk-radius: 0.65rem;
+  --welk-border: 2px solid var(--welk-color-ink);
+  --welk-shadow: 3px 3px 0 var(--welk-color-ink);
+}

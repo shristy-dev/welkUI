@@ -1,0 +1,34 @@
+.accordion {
+  border: var(--welk-border);
+  border-radius: var(--welk-radius);
+  background: var(--welk-color-paper);
+  box-shadow: var(--welk-shadow);
+  color: var(--welk-color-ink);
+  font: 1rem/1.5 var(--welk-font-family);
+}
+
+.summary {
+  padding: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--welk-radius);
+}
+
+.summary::marker {
+  color: var(--welk-color-ink);
+}
+
+.summary:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 4px;
+}
+
+.accordion[open] .summary {
+  border-bottom: var(--welk-border);
+  border-radius: var(--welk-radius) var(--welk-radius) 0 0;
+  background: var(--welk-color-accent);
+}
+
+.content {
+  padding: 1rem;
+}

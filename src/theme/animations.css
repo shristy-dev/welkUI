@@ -1,0 +1,9 @@
+:root {
+  --welk-transition: 120ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --welk-transition: 0ms;
+  }
+}

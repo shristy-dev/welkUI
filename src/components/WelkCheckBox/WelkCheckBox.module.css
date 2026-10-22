@@ -1,0 +1,27 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--welk-color-ink);
+  font: 1rem/1.5 var(--welk-font-family);
+  cursor: pointer;
+}
+
+.input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--welk-color-ink);
+  cursor: inherit;
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+}
+
+.label:has(.input:disabled) {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

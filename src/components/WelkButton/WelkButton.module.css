@@ -1,0 +1,56 @@
+.button {
+  box-sizing: border-box;
+  border: var(--welk-border);
+  border-radius: var(--welk-radius);
+  box-shadow: var(--welk-shadow);
+  color: var(--welk-color-ink);
+  font-family: var(--welk-font-family);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform var(--welk-transition),
+    box-shadow var(--welk-transition),
+    background-color var(--welk-transition);
+}
+
+.primary {
+  background: var(--welk-color-accent);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--welk-color-accent-hover);
+}
+
+.secondary {
+  background: var(--welk-color-paper);
+}
+
+.sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.md {
+  padding: 0.65rem 1.1rem;
+  font-size: 1rem;
+}
+
+.lg {
+  padding: 0.85rem 1.5rem;
+  font-size: 1.125rem;
+}
+
+.button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--welk-color-ink);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 5px;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
