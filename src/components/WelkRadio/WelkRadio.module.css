@@ -1,0 +1,74 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--welk-color-ink);
+  font: 1rem/1.5 var(--welk-font-family);
+  cursor: pointer;
+}
+
+.input {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  flex-shrink: 0;
+  border: var(--welk-border);
+  border-radius: 46% 54% 48% 52% / 54% 45% 55% 46%;
+  transform: rotate(-4deg);
+  background: var(--welk-color-paper);
+  color: var(--welk-color-ink);
+  cursor: inherit;
+}
+
+.input::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 44% 56% 48% 52%;
+  background: currentColor;
+  transform: scale(0);
+}
+
+.input:checked {
+  background: var(--welk-color-accent);
+}
+
+.input:checked::before {
+  transform: scale(1);
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+}
+
+.label:has(.input:disabled) {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .input {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+
+  .input::before {
+    background: CanvasText;
+    forced-color-adjust: none;
+  }
+
+  .input:disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  .input:disabled::before {
+    background: GrayText;
+  }
+}

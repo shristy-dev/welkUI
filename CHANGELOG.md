@@ -2,6 +2,77 @@
 
 ## 0.1.0 - Unreleased
 
+- Add WelkDrawer with four edge placements, comic slide animations, native modal
+  focus management, Escape/close dismissal and optional backdrop dismissal.
+
+- Add WelkBreadCrumbs, WelkBadge and WelkSwitch with slightly distorted comic
+  shapes, accessible navigation/labels and native switch keyboard/form support.
+
+- Show local image thumbnails and compact video/audio previews in WelkAttachment,
+  with decode-error messages and automatic object URL cleanup.
+
+- Add WelkAttachment with native file selection, optional per-file byte and count
+  limits, accepted file types, validation messages and clear/reset support.
+
+- Add WelkSnackBar with six viewport positions, comic squash-and-pop entrance/exit
+  animations, semantic colors, accessible dismissal and optional auto-hide.
+
+- Add WelkStickerCard with an oversized animated sticker overlapping the left
+  edge and corners, reusing native card interactions and sticker outline options.
+
+- Add WelkDropDown with native selection and optional built-in searchable
+  listbox, keyboard navigation and controlled/uncontrolled form support.
+
+- Add WelkTimePicker with custom scrollable 24-hour/minute wheels, optional
+  seconds, manual text entry and keyboard/form support.
+
+- Add WelkRangeSlider with a slightly distorted straight track, comic thumb,
+  native range semantics and numeric value callbacks.
+
+- Add WelkSticker with a thick white silhouette outline and a load-triggered
+  sticking animation respecting reduced-motion preferences.
+
+- Add WelkDivider with horizontal/vertical orientation, plain/dotted/dashed
+  lines and configurable pixel thickness.
+
+- Add WelkOTPInput with six configurable comic digit boxes, numeric paste,
+  one-time-code autofill, controlled values and completion callbacks.
+
+- Add WelkDateInput with an editable field and calendar icon that opens the custom
+  date picker, keyboard access and selection/Escape/outside dismissal.
+
+- Add WelkDatePicker with a full-month comic calendar, editable top date field,
+  keyboard navigation, date limits and controlled/uncontrolled form support.
+
+- Add WelkTooltip with thinking/speech bubbles, animated comic entrances,
+  hover/focus activation, Escape dismissal and reduced-motion support.
+
+- Add WelkIconButton with a distorted square icon-only default, a labeled text
+  variant and accessible native button interactions.
+
+- Add WelkCard with title/subtitle, a top-right icon, native click/keyboard behavior
+  and default hover growth respecting reduced-motion preferences.
+
+- Add WelkImage with network/asset variants, comic framing, customizable network
+  fallback and a bundled comic background default.
+
+- Add WelkRadio and WelkRadioGroup with hand-drawn circles, native keyboard/form
+  behavior and controlled/uncontrolled selection. Restyle checkboxes as slightly
+  distorted squares, preserving checked, indeterminate and disabled states.
+
+- Give buttons and dialogs slightly distorted, hand-drawn shapes. Remove the
+  `borderStyle` and `dottedBorder` APIs; all component borders are solid.
+
+- Use an orange warning palette for dialogs and buttons.
+
+- Add WelkDialog with five semantic variants, native modal focus/Escape behavior,
+  optional backdrop dismissal, and customizable default/confirmation actions.
+
+- Add accordion `fixedWidth` with text wrapping and a responsive parent-width cap.
+
+- Animate accordion expansion and collapse in supporting browsers, respecting
+  reduced-motion preferences.
+
 - Add vertical (default), horizontal and nested accordion layouts with opt-in
   `closeOnOutsideClick` dismissal for mouse, touch and pen interactions.
 

@@ -13,6 +13,8 @@ export const WelkAccordion = forwardRef<HTMLDetailsElement, WelkAccordionProps>(
       className,
       variant = "vertical",
       closeOnOutsideClick = false,
+      fixedWidth,
+      style,
       ...props
     },
     ref,
@@ -46,6 +48,10 @@ export const WelkAccordion = forwardRef<HTMLDetailsElement, WelkAccordionProps>(
         {...props}
         ref={setRef}
         className={cn(styles.accordion, styles[variant], className)}
+        style={{
+          ...style,
+          ...(fixedWidth !== undefined && { width: fixedWidth }),
+        }}
       >
         <summary className={styles.summary}>{title}</summary>
         <div className={styles.content}>{children}</div>

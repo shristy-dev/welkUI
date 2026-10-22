@@ -1,4 +1,7 @@
 .accordion {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
   border: var(--welk-border);
   border-radius: var(--welk-radius);
   background: var(--welk-color-paper);
@@ -8,10 +11,13 @@
 }
 
 .summary {
+  min-width: 0;
+  overflow-wrap: anywhere;
   padding: 1rem;
   font-weight: 700;
   cursor: pointer;
   border-radius: var(--welk-radius);
+  transition: background-color var(--welk-transition);
 }
 
 .summary::marker {
@@ -30,6 +36,7 @@
 }
 
 .content {
+  min-width: 0;
   padding: 1rem;
 }
 
@@ -65,4 +72,44 @@
 
 .content {
   overflow-wrap: anywhere;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  .accordion {
+    interpolate-size: allow-keywords;
+  }
+
+  .accordion::details-content {
+    content-visibility: hidden;
+    block-size: 0;
+    opacity: 0;
+    overflow: clip;
+    transition:
+      block-size 240ms ease,
+      opacity 240ms ease,
+      content-visibility 240ms allow-discrete;
+  }
+
+  .accordion[open]::details-content {
+    content-visibility: visible;
+    block-size: auto;
+    opacity: 1;
+  }
+
+  .horizontal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0fr);
+    transition: grid-template-columns 240ms ease;
+  }
+
+  .horizontal[open] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion,
+  .accordion::details-content {
+    transition: none;
+  }
 }

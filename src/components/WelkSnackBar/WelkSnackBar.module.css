@@ -1,0 +1,168 @@
+.position {
+  position: fixed;
+  z-index: 1000;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  pointer-events: none;
+}
+
+.top-left,
+.top-middle,
+.top-right {
+  top: max(1rem, env(safe-area-inset-top));
+  --entry-y: -2rem;
+}
+
+.bottom-left,
+.bottom-middle,
+.bottom-right {
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  --entry-y: 2rem;
+}
+
+.top-left,
+.bottom-left {
+  left: max(1rem, env(safe-area-inset-left));
+}
+
+.top-middle,
+.bottom-middle {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-right,
+.bottom-right {
+  right: max(1rem, env(safe-area-inset-right));
+}
+
+.snackbar {
+  --snack-color: var(--welk-color-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  max-width: 30rem;
+  padding: 0.75rem 0.75rem 0.75rem 1rem;
+  border: var(--welk-border);
+  border-width: 3px;
+  border-radius: 16px 8px 18px 10px / 10px 16px 8px 14px;
+  box-shadow: 5px 5px 0 var(--welk-color-ink);
+  background: var(--snack-color);
+  color: var(--welk-color-ink);
+  font: 0.95rem/1.5 var(--welk-font-family);
+  pointer-events: auto;
+  transform: rotate(-1deg);
+  animation: comic-in 420ms cubic-bezier(0.2, 0.9, 0.3, 1.25) both;
+}
+
+.info {
+  --snack-color: var(--welk-color-info);
+}
+
+.success {
+  --snack-color: var(--welk-color-success);
+}
+
+.warning {
+  --snack-color: var(--welk-color-warning);
+}
+
+.error {
+  --snack-color: var(--welk-color-error);
+}
+
+.burst {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  fill: var(--welk-color-paper);
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.bolt {
+  fill: currentColor;
+  stroke: none;
+}
+
+.message {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.close {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.65rem;
+  border: var(--welk-border);
+  border-radius: 8px 5px 10px 6px;
+  background: var(--welk-color-paper);
+  color: inherit;
+  cursor: pointer;
+}
+
+.close svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+}
+
+.close:hover {
+  background: var(--welk-color-muted);
+}
+
+.close:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+}
+
+.leaving {
+  pointer-events: none;
+  animation: comic-out 200ms ease-in both;
+}
+
+@keyframes comic-in {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--entry-y)) rotate(-8deg) scale(0.65, 0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) rotate(2deg) scale(1.05, 0.94);
+  }
+  80% {
+    transform: rotate(-2deg) scale(0.98, 1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-1deg) scale(1);
+  }
+}
+
+@keyframes comic-out {
+  to {
+    opacity: 0;
+    transform: translateY(var(--entry-y)) rotate(6deg) scale(0.8, 0.65);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snackbar,
+  .leaving {
+    animation: none;
+    transform: none;
+  }
+
+  .leaving {
+    opacity: 0;
+  }
+}

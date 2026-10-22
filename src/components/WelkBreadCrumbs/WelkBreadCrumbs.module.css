@@ -1,0 +1,59 @@
+.nav {
+  color: var(--welk-color-ink);
+  font: 0.9rem/1.5 var(--welk-font-family);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.crumb {
+  display: inline-block;
+  min-width: 0;
+  padding: 0.25rem 0.6rem;
+  border: var(--welk-border);
+  border-radius: 8px 5px 10px 6px / 5px 9px 6px 8px;
+  background: var(--welk-color-paper);
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+a.crumb {
+  text-decoration: none;
+}
+
+a.crumb:hover {
+  background: var(--welk-color-accent-hover);
+}
+
+a.crumb:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+}
+
+.current {
+  background: var(--welk-color-accent);
+  box-shadow: 2px 2px 0 var(--welk-color-ink);
+  font-weight: 700;
+  transform: rotate(-1deg);
+}
+
+.separator {
+  flex-shrink: 0;
+  font-weight: 700;
+  transform: rotate(8deg);
+}

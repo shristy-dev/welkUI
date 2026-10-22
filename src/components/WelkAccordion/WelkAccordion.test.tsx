@@ -6,6 +6,43 @@ import { WelkAccordion } from "./WelkAccordion";
 import styles from "./WelkAccordion.module.css";
 
 describe("WelkAccordion", () => {
+  it.each([320, "24rem"] as const)(
+    "preserves fixed width %s across open and closed states",
+    (fixedWidth) => {
+      const { rerender } = render(
+        <WelkAccordion
+          title="Details"
+          fixedWidth={fixedWidth}
+          style={{ color: "red", width: 100 }}
+        >
+          Content
+        </WelkAccordion>,
+      );
+      const details = screen.getByText("Details").closest("details")!;
+      const width =
+        typeof fixedWidth === "number" ? `${fixedWidth}px` : fixedWidth;
+      expect(details.style.width).toBe(width);
+      expect(details.style.color).toBe("red");
+      expect(details).not.toHaveAttribute("fixedWidth");
+      rerender(
+        <WelkAccordion title="Details" fixedWidth={fixedWidth} open>
+          Content
+        </WelkAccordion>,
+      );
+      expect(details.style.width).toBe(width);
+    },
+  );
+
+  it("preserves native width styling when fixedWidth is omitted", () => {
+    render(
+      <WelkAccordion title="Details" style={{ width: "50%" }}>
+        Content
+      </WelkAccordion>,
+    );
+    expect(screen.getByText("Details").closest("details")?.style.width).toBe(
+      "50%",
+    );
+  });
   it.each(["vertical", "horizontal", "nested"] as const)(
     "supports %s layout and opt-in outside dismissal",
     async (variant) => {

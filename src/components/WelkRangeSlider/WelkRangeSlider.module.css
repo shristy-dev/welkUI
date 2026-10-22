@@ -1,0 +1,80 @@
+.field {
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.slider {
+  appearance: none;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  box-sizing: border-box;
+  height: 0.5rem;
+  border: var(--welk-border);
+  border-radius: 45% 12% 40% 15% / 35% 55% 30% 60%;
+  background: var(--welk-color-paper);
+  box-shadow: 1px 2px 0 var(--welk-color-ink);
+}
+
+.slider::-moz-range-track {
+  box-sizing: border-box;
+  height: 0.5rem;
+  border: var(--welk-border);
+  border-radius: 45% 12% 40% 15% / 35% 55% 30% 60%;
+  background: var(--welk-color-paper);
+  box-shadow: 1px 2px 0 var(--welk-color-ink);
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  box-sizing: border-box;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: calc(-0.5rem - 2px);
+  border: var(--welk-border);
+  border-radius: 45% 55% 42% 58% / 55% 42% 58% 45%;
+  background: var(--welk-color-accent);
+  box-shadow: 2px 2px 0 var(--welk-color-ink);
+  transform: rotate(-6deg);
+}
+
+.slider::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: var(--welk-border);
+  border-radius: 45% 55% 42% 58% / 55% 42% 58% 45%;
+  background: var(--welk-color-accent);
+  box-shadow: 2px 2px 0 var(--welk-color-ink);
+  transform: rotate(-6deg);
+}
+
+.slider:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+  border-radius: var(--welk-radius);
+}
+
+.slider:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .slider {
+    appearance: auto;
+  }
+}

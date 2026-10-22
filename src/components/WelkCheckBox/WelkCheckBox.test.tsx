@@ -5,6 +5,24 @@ import { describe, expect, it, vi } from "vitest";
 import { WelkCheckBox } from "./WelkCheckBox";
 
 describe("WelkCheckBox", () => {
+  it("supports indeterminate state and native form reset", async () => {
+    const ref = createRef<HTMLInputElement>();
+    render(
+      <form>
+        <WelkCheckBox ref={ref} label="All heroes" name="all" defaultChecked />
+        <button type="reset">Reset</button>
+      </form>,
+    );
+    const input = ref.current!;
+    input.indeterminate = true;
+    expect(input.indeterminate).toBe(true);
+    const user = userEvent.setup();
+    await user.click(input);
+    expect(input.indeterminate).toBe(false);
+    expect(input).not.toBeChecked();
+    await user.click(screen.getByRole("button", { name: "Reset" }));
+    expect(input).toBeChecked();
+  });
   it("associates its label, forwards its ref and supports uncontrolled changes", async () => {
     const ref = createRef<HTMLInputElement>();
     render(

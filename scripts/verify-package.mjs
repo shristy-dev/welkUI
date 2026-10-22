@@ -52,6 +52,28 @@ for (const name of [
   "WelkAccordion",
   "WelkInput",
   "WelkAvatar",
+  "WelkDialog",
+  "WelkRadio",
+  "WelkRadioGroup",
+  "WelkImage",
+  "WelkCard",
+  "WelkIconButton",
+  "WelkTooltip",
+  "WelkDatePicker",
+  "WelkDateInput",
+  "WelkOTPInput",
+  "WelkDivider",
+  "WelkSticker",
+  "WelkRangeSlider",
+  "WelkTimePicker",
+  "WelkDropDown",
+  "WelkStickerCard",
+  "WelkSnackBar",
+  "WelkAttachment",
+  "WelkBreadCrumbs",
+  "WelkBadge",
+  "WelkSwitch",
+  "WelkDrawer",
 ]) {
   const base = `dist/components/${name}/${name}`;
   assert.ok((await read(`${base}.js`)).startsWith('"use client";'));
@@ -113,6 +135,28 @@ assert.ok(!consumerCode.includes("WelkCheckBox"));
 assert.ok(!consumerCode.includes("WelkAccordion"));
 assert.ok(!consumerCode.includes("WelkInput"));
 assert.ok(!consumerCode.includes("WelkAvatar"));
+assert.ok(!consumerCode.includes("WelkDialog"));
+assert.ok(!consumerCode.includes("WelkRadio"));
+assert.ok(!consumerCode.includes("WelkRadioGroup"));
+assert.ok(!consumerCode.includes("WelkImage"));
+assert.ok(!consumerCode.includes("WelkCard"));
+assert.ok(!consumerCode.includes("WelkIconButton"));
+assert.ok(!consumerCode.includes("WelkTooltip"));
+assert.ok(!consumerCode.includes("WelkDatePicker"));
+assert.ok(!consumerCode.includes("WelkDateInput"));
+assert.ok(!consumerCode.includes("WelkOTPInput"));
+assert.ok(!consumerCode.includes("WelkDivider"));
+assert.ok(!consumerCode.includes("WelkSticker"));
+assert.ok(!consumerCode.includes("WelkRangeSlider"));
+assert.ok(!consumerCode.includes("WelkTimePicker"));
+assert.ok(!consumerCode.includes("WelkDropDown"));
+assert.ok(!consumerCode.includes("WelkStickerCard"));
+assert.ok(!consumerCode.includes("WelkSnackBar"));
+assert.ok(!consumerCode.includes("WelkAttachment"));
+assert.ok(!consumerCode.includes("WelkBreadCrumbs"));
+assert.ok(!consumerCode.includes("WelkBadge"));
+assert.ok(!consumerCode.includes("WelkSwitch"));
+assert.ok(!consumerCode.includes("WelkDrawer"));
 console.log(
   `Verified ${files.size} packaged files, stylesheet, declarations, client boundaries and tree shaking.`,
 );

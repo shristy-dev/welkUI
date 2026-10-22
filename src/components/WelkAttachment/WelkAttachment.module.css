@@ -1,0 +1,114 @@
+.attachment {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  border: var(--welk-border);
+  border-radius: 15px 8px 18px 10px / 9px 17px 8px 14px;
+  box-shadow: var(--welk-shadow);
+  background: var(--welk-color-paper);
+  color: var(--welk-color-ink);
+  font-family: var(--welk-font-family);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.input::file-selector-button,
+.clear {
+  padding: 0.6rem 0.75rem;
+  border: var(--welk-border);
+  border-radius: 8px 5px 10px 6px;
+  background: var(--welk-color-accent);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.input::file-selector-button {
+  margin-right: 0.75rem;
+}
+
+.input:focus-visible,
+.clear:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+}
+
+.input:disabled,
+.clear:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hint,
+.error {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.error {
+  padding: 0.5rem;
+  border: var(--welk-border);
+  border-radius: 7px 10px 6px 8px;
+  background: var(--welk-color-error);
+}
+
+.files {
+  list-style: none;
+  padding: 0;
+}
+
+.files li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: var(--welk-border);
+  border-radius: 7px 4px 9px 5px;
+  background: var(--welk-color-muted);
+  overflow-wrap: anywhere;
+}
+
+.size {
+  font-size: 0.75rem;
+}
+
+.preview {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.preview img,
+.preview video {
+  box-sizing: border-box;
+  width: 8rem;
+  height: 6rem;
+  max-width: 100%;
+  object-fit: contain;
+  border: var(--welk-border);
+  border-radius: 9px 5px 11px 6px;
+  background: var(--welk-color-paper);
+}
+
+.preview audio {
+  width: 16rem;
+  max-width: 100%;
+}

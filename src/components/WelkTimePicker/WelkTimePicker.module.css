@@ -1,0 +1,113 @@
+.picker {
+  box-sizing: border-box;
+  width: 21rem;
+  max-width: 100%;
+  padding: 1rem;
+  border: var(--welk-border);
+  border-radius: 16px 9px 20px 11px / 10px 18px 9px 16px;
+  box-shadow: var(--welk-shadow);
+  background: var(--welk-color-paper);
+  color: var(--welk-color-ink);
+  font-family: var(--welk-font-family);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.6rem;
+  border: var(--welk-border);
+  border-radius: 8px 12px 7px 10px;
+  background: var(--welk-color-paper);
+  color: inherit;
+  font: inherit;
+}
+
+.hint,
+.error {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.error {
+  padding: 0.5rem;
+  background: var(--welk-color-error);
+  border: var(--welk-border);
+  border-radius: 8px 5px 9px 6px;
+}
+
+.wheels {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+}
+
+.wheelLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.wheel {
+  box-sizing: content-box;
+  position: relative;
+  height: 7.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y proximity;
+  scrollbar-width: thin;
+  border: var(--welk-border);
+  border-radius: 12px 8px 15px 9px;
+  background: var(--welk-color-muted);
+  box-shadow: 2px 2px 0 var(--welk-color-ink);
+}
+
+.option {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+  padding: 0;
+  border: 2px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  scroll-snap-align: center;
+  cursor: pointer;
+}
+
+.option[aria-selected="true"] {
+  border: var(--welk-border);
+  border-radius: 12% 8% 16% 10%;
+  background: var(--welk-color-accent);
+  font-weight: 700;
+}
+
+.option:hover:not(:disabled) {
+  background: var(--welk-color-accent-hover);
+}
+
+.picker :focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 2px;
+}
+
+.picker :disabled,
+.wheel[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

@@ -8,12 +8,42 @@
 }
 
 .input {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-grid;
+  place-items: center;
   width: 1.25rem;
   height: 1.25rem;
   margin: 0;
   flex-shrink: 0;
-  accent-color: var(--welk-color-ink);
+  border: var(--welk-border);
+  border-radius: 18% 12% 20% 10% / 12% 22% 14% 20%;
+  transform: rotate(-3deg);
+  background: var(--welk-color-paper);
+  color: var(--welk-color-ink);
   cursor: inherit;
+}
+
+.input::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  background: currentColor;
+  clip-path: polygon(10% 45%, 35% 65%, 85% 10%, 100% 25%, 38% 95%, 0 60%);
+  transform: scale(0);
+}
+
+.input:checked {
+  background: var(--welk-color-accent);
+}
+
+.input:checked::before,
+.input:indeterminate::before {
+  transform: scale(1);
+}
+
+.input:indeterminate::before {
+  clip-path: inset(40% 5%);
 }
 
 .input:focus-visible {
@@ -24,4 +54,26 @@
 .label:has(.input:disabled) {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .input {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+  }
+
+  .input::before {
+    background: CanvasText;
+    forced-color-adjust: none;
+  }
+
+  .input:disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  .input:disabled::before {
+    background: GrayText;
+  }
 }

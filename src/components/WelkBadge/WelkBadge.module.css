@@ -1,0 +1,50 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  gap: 0.35rem;
+  border: var(--welk-border);
+  border-radius: 9px 5px 11px 6px / 6px 10px 5px 9px;
+  box-shadow: 2px 2px 0 var(--welk-color-ink);
+  background: var(--welk-color-accent);
+  color: var(--welk-color-ink);
+  font-family: var(--welk-font-family);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+  transform: rotate(-2deg);
+}
+
+.sm {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.65rem;
+}
+
+.md {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.8rem;
+}
+
+.lg {
+  padding: 0.3rem 0.75rem;
+  font-size: 1rem;
+}
+
+.info {
+  background: var(--welk-color-info);
+}
+
+.success {
+  background: var(--welk-color-success);
+}
+
+.warning {
+  background: var(--welk-color-warning);
+}
+
+.error {
+  background: var(--welk-color-error);
+}

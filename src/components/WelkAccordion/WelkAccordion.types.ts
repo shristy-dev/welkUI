@@ -1,4 +1,4 @@
-import type { DetailsHTMLAttributes, ReactNode } from "react";
+import type { CSSProperties, DetailsHTMLAttributes, ReactNode } from "react";
 
 export interface WelkAccordionProps extends Omit<
   DetailsHTMLAttributes<HTMLDetailsElement>,
@@ -7,4 +7,5 @@ export interface WelkAccordionProps extends Omit<
   title: ReactNode;
   variant?: "vertical" | "horizontal" | "nested";
   closeOnOutsideClick?: boolean;
+  fixedWidth?: CSSProperties["width"];
 }

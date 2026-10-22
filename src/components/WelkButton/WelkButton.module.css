@@ -1,7 +1,8 @@
 .button {
   box-sizing: border-box;
   border: var(--welk-border);
-  border-radius: var(--welk-radius);
+  border-radius: 14px 8px 16px 9px / 9px 15px 8px 13px;
+  transform: rotate(-1deg);
   box-shadow: var(--welk-shadow);
   color: var(--welk-color-ink);
   font-family: var(--welk-font-family);
@@ -81,7 +82,7 @@
 }
 
 .button:active:not(:disabled) {
-  transform: translate(2px, 2px);
+  transform: translate(2px, 2px) rotate(-1deg);
   box-shadow: 1px 1px 0 var(--welk-color-ink);
 }
 

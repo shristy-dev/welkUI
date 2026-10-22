@@ -17,6 +17,17 @@ export const Default: Story = {};
 export const Open: Story = { args: { open: true } };
 export const Vertical: Story = { args: { variant: "vertical" } };
 export const Horizontal: Story = { args: { variant: "horizontal" } };
+export const FixedWidth: Story = {
+  args: {
+    fixedWidth: 320,
+    title: "A longer title that wraps inside a fixed-width accordion",
+    children:
+      "Long content stays within the same width whether the accordion is open or closed.",
+  },
+};
+export const HorizontalFixedWidth: Story = {
+  args: { variant: "horizontal", fixedWidth: 480 },
+};
 export const Nested: Story = {
   render: (args) => (
     <WelkAccordion {...args} title="Parent accordion">
