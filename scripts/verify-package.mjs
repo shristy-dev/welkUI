@@ -24,6 +24,7 @@ for (const path of [
   "dist/index.js",
   "dist/index.d.ts",
   "dist/styles.css",
+  "dist/fonts/ShortStack-OFL.txt",
   "LICENSE",
 ]) {
   assert.ok(files.has(path), `Package is missing ${path}`);
@@ -32,9 +33,26 @@ assert.ok([...files].every((path) => !/\.(test|stories)\./.test(path)));
 const stylesheet = await read("dist/styles.css");
 assert.ok(stylesheet.includes("--welk-color-accent"));
 assert.ok(stylesheet.includes("prefers-reduced-motion"));
+const font = await readFile(
+  resolve(root, "assets/font/short_stack/ShortStack-Regular.ttf"),
+);
+assert.ok(
+  stylesheet.includes(font.toString("base64")),
+  "The package stylesheet must embed the Short Stack font",
+);
+assert.equal(
+  await read("dist/fonts/ShortStack-OFL.txt"),
+  await read("assets/font/short_stack/OFL.txt"),
+);
 assert.ok(!(await read("dist/index.js")).startsWith('"use client"'));
 
-for (const name of ["WelkButton", "WelkCheckBox", "WelkAccordion"]) {
+for (const name of [
+  "WelkButton",
+  "WelkCheckBox",
+  "WelkAccordion",
+  "WelkInput",
+  "WelkAvatar",
+]) {
   const base = `dist/components/${name}/${name}`;
   assert.ok((await read(`${base}.js`)).startsWith('"use client";'));
   assert.ok(files.has(`${base}.types.d.ts`));
@@ -93,6 +111,8 @@ const consumerCode = outputs
 assert.ok(consumerCode.includes("WelkButton"));
 assert.ok(!consumerCode.includes("WelkCheckBox"));
 assert.ok(!consumerCode.includes("WelkAccordion"));
+assert.ok(!consumerCode.includes("WelkInput"));
+assert.ok(!consumerCode.includes("WelkAvatar"));
 console.log(
   `Verified ${files.size} packaged files, stylesheet, declarations, client boundaries and tree shaking.`,
 );

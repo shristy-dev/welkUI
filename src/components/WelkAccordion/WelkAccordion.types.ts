@@ -5,4 +5,6 @@ export interface WelkAccordionProps extends Omit<
   "title"
 > {
   title: ReactNode;
+  variant?: "vertical" | "horizontal" | "nested";
+  closeOnOutsideClick?: boolean;
 }

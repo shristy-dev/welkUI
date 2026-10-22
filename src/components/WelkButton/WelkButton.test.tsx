@@ -3,8 +3,45 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { WelkButton } from "./WelkButton";
+import styles from "./WelkButton.module.css";
 
 describe("WelkButton", () => {
+  it("defaults to the primary variant", () => {
+    render(<WelkButton>Default</WelkButton>);
+    expect(screen.getByRole("button")).toHaveClass(styles.primary);
+  });
+
+  it.each([
+    "primary",
+    "error",
+    "warning",
+    "ghost",
+    "info",
+    "success",
+    "secondary",
+  ] as const)("supports the %s variant and disabled state", async (variant) => {
+    const onClick = vi.fn();
+    const { rerender } = render(
+      <WelkButton variant={variant} onClick={onClick}>
+        Action
+      </WelkButton>,
+    );
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass(styles.button, styles[variant], styles.md);
+    expect(button).not.toHaveAttribute("variant");
+    const user = userEvent.setup();
+    await user.click(button);
+    expect(onClick).toHaveBeenCalledOnce();
+    rerender(
+      <WelkButton variant={variant} disabled onClick={onClick}>
+        Action
+      </WelkButton>,
+    );
+    expect(button).toBeDisabled();
+    await user.click(button);
+    expect(onClick).toHaveBeenCalledOnce();
+  });
+
   it("forwards its ref and native attributes without submitting by default", () => {
     const ref = createRef<HTMLButtonElement>();
     render(

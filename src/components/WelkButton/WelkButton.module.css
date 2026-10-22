@@ -25,6 +25,46 @@
   background: var(--welk-color-paper);
 }
 
+.error {
+  background: var(--welk-color-error);
+}
+
+.error:hover:not(:disabled) {
+  background: var(--welk-color-error-hover);
+}
+
+.warning {
+  background: var(--welk-color-warning);
+}
+
+.warning:hover:not(:disabled) {
+  background: var(--welk-color-warning-hover);
+}
+
+.ghost {
+  background: transparent;
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--welk-color-muted);
+}
+
+.info {
+  background: var(--welk-color-info);
+}
+
+.info:hover:not(:disabled) {
+  background: var(--welk-color-info-hover);
+}
+
+.success {
+  background: var(--welk-color-success);
+}
+
+.success:hover:not(:disabled) {
+  background: var(--welk-color-success-hover);
+}
+
 .sm {
   padding: 0.4rem 0.75rem;
   font-size: 0.875rem;

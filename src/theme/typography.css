@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Short Stack";
+  src: url("../../assets/font/short_stack/ShortStack-Regular.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
-  --welk-font-family: "Comic Sans MS", "Chalkboard SE", cursive, sans-serif;
+  --welk-font-family: "Short Stack", cursive, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  font-family: var(--welk-font-family);
 }

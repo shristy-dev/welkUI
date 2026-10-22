@@ -1,0 +1,116 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  color: var(--welk-color-ink);
+  font: 1rem/1.5 var(--welk-font-family);
+}
+
+.label {
+  align-self: flex-start;
+  font-weight: 700;
+}
+
+.control {
+  position: relative;
+}
+
+.input.withAction {
+  padding-inline-end: 3.5rem;
+}
+
+.input.withAction:focus {
+  padding-inline-end: calc(3.5rem - 1px);
+}
+
+.action {
+  position: absolute;
+  inset-inline-end: 0.375rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: calc(var(--welk-radius) / 2);
+  background: transparent;
+  color: var(--welk-color-ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.action:hover:not(:disabled) {
+  background: var(--welk-color-accent);
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--welk-color-focus);
+  outline-offset: -2px;
+}
+
+.action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  border: var(--welk-border);
+  border-radius: var(--welk-radius);
+  box-shadow: var(--welk-shadow);
+  background: var(--welk-color-paper);
+  color: var(--welk-color-ink);
+  font: inherit;
+  transition:
+    border-color var(--welk-transition),
+    box-shadow var(--welk-transition),
+    background-color var(--welk-transition);
+}
+
+.input::placeholder {
+  color: var(--welk-color-ink);
+  opacity: 0.65;
+}
+
+.input:hover:not(:disabled):not(:read-only) {
+  background: var(--welk-color-muted);
+}
+
+.input:focus {
+  outline: none;
+  border: 3px solid var(--welk-color-focus);
+  padding: calc(0.75rem - 1px) calc(1rem - 1px);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--welk-color-error-hover);
+}
+
+.input:read-only {
+  background: var(--welk-color-muted);
+}
+
+.input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: var(--welk-color-muted);
+}

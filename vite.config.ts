@@ -1,10 +1,24 @@
 import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
     react(),
+    {
+      name: "welkui-font-license",
+      generateBundle() {
+        this.emitFile({
+          type: "asset",
+          fileName: "fonts/ShortStack-OFL.txt",
+          source: readFileSync(
+            new URL("./assets/font/short_stack/OFL.txt", import.meta.url),
+            "utf8",
+          ),
+        });
+      },
+    },
     {
       name: "welkui-client-boundaries",
       renderChunk(code, chunk) {

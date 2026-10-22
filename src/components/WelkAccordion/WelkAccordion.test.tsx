@@ -1,10 +1,125 @@
 import { createRef } from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { WelkAccordion } from "./WelkAccordion";
+import styles from "./WelkAccordion.module.css";
 
 describe("WelkAccordion", () => {
+  it.each(["vertical", "horizontal", "nested"] as const)(
+    "supports %s layout and opt-in outside dismissal",
+    async (variant) => {
+      const onToggle = vi.fn();
+      const ref = createRef<HTMLDetailsElement>();
+      render(
+        <>
+          <button>Outside</button>
+          <WelkAccordion
+            title="Details"
+            variant={variant}
+            closeOnOutsideClick
+            ref={ref}
+            onToggle={onToggle}
+          >
+            Content
+          </WelkAccordion>
+        </>,
+      );
+      expect(ref.current).toHaveClass(styles[variant]);
+      expect(ref.current).not.toHaveAttribute("variant");
+      expect(ref.current).not.toHaveAttribute("closeOnOutsideClick");
+      const user = userEvent.setup();
+      await user.click(screen.getByText("Details"));
+      await user.click(screen.getByText("Content"));
+      expect(ref.current).toHaveAttribute("open");
+      onToggle.mockClear();
+      await user.click(screen.getByRole("button", { name: "Outside" }));
+      expect(ref.current).not.toHaveAttribute("open");
+      await waitFor(() => expect(onToggle).toHaveBeenCalled());
+    },
+  );
+
+  it("defaults to vertical and keeps the accordion open after outside taps", async () => {
+    const ref = createRef<HTMLDetailsElement>();
+    render(
+      <>
+        <button>Outside</button>
+        <WelkAccordion title="Details" ref={ref}>
+          Content
+        </WelkAccordion>
+      </>,
+    );
+    const user = userEvent.setup();
+    await user.click(screen.getByText("Details"));
+    await user.click(screen.getByRole("button"));
+    expect(ref.current).toHaveAttribute("open");
+    expect(ref.current).toHaveClass(styles.vertical);
+  });
+
+  it("treats child interactions as inside the parent and dismisses children independently", async () => {
+    const parent = createRef<HTMLDetailsElement>();
+    const child = createRef<HTMLDetailsElement>();
+    render(
+      <>
+        <button>Outside</button>
+        <WelkAccordion title="Parent" closeOnOutsideClick ref={parent}>
+          <p>Parent content</p>
+          <WelkAccordion
+            title="Child"
+            variant="nested"
+            closeOnOutsideClick
+            ref={child}
+          >
+            Child content
+          </WelkAccordion>
+        </WelkAccordion>
+      </>,
+    );
+    const user = userEvent.setup();
+    await user.click(screen.getByText("Parent"));
+    await user.click(screen.getByText("Child"));
+    await user.click(screen.getByText("Child content"));
+    expect(parent.current).toHaveAttribute("open");
+    expect(child.current).toHaveAttribute("open");
+    await user.click(screen.getByText("Parent content"));
+    expect(parent.current).toHaveAttribute("open");
+    expect(child.current).not.toHaveAttribute("open");
+    await user.click(screen.getByText("Child"));
+    await user.click(screen.getByRole("button"));
+    expect(parent.current).not.toHaveAttribute("open");
+    expect(child.current).not.toHaveAttribute("open");
+  });
+
+  it("supports touch pointers and stops listening when dismissal is disabled or unmounted", () => {
+    const ref = createRef<HTMLDetailsElement>();
+    const { rerender, unmount } = render(
+      <WelkAccordion title="Details" closeOnOutsideClick ref={ref}>
+        Content
+      </WelkAccordion>,
+    );
+    const details = ref.current!;
+    details.open = true;
+    fireEvent.pointerDown(document.body, { pointerType: "touch" });
+    expect(details).not.toHaveAttribute("open");
+    rerender(
+      <WelkAccordion title="Details" closeOnOutsideClick={false} ref={ref}>
+        Content
+      </WelkAccordion>,
+    );
+    details.open = true;
+    fireEvent.pointerDown(document.body);
+    expect(details).toHaveAttribute("open");
+    rerender(
+      <WelkAccordion title="Details" closeOnOutsideClick ref={ref}>
+        Content
+      </WelkAccordion>,
+    );
+    unmount();
+    fireEvent.pointerDown(document.body);
+    expect(details).toHaveAttribute("open");
+    expect(ref.current).toBeNull();
+  });
+
   it("uses native disclosure semantics and forwards attributes and refs", () => {
     const ref = createRef<HTMLDetailsElement>();
     render(

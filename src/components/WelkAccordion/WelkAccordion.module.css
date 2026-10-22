@@ -23,7 +23,7 @@
   outline-offset: 4px;
 }
 
-.accordion[open] .summary {
+.accordion[open] > .summary {
   border-bottom: var(--welk-border);
   border-radius: var(--welk-radius) var(--welk-radius) 0 0;
   background: var(--welk-color-accent);
@@ -31,4 +31,38 @@
 
 .content {
   padding: 1rem;
+}
+
+.vertical,
+.nested {
+  min-width: 0;
+}
+
+.nested {
+  box-shadow: none;
+  border-inline-start-width: 4px;
+}
+
+.content > .accordion + .accordion {
+  margin-top: 1rem;
+}
+
+.horizontal[open] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+}
+
+.horizontal[open] > .summary {
+  border-bottom: 0;
+  border-inline-end: var(--welk-border);
+  border-radius: var(--welk-radius) 0 0 var(--welk-radius);
+  overflow-wrap: anywhere;
+}
+
+.horizontal::details-content {
+  min-width: 0;
+}
+
+.content {
+  overflow-wrap: anywhere;
 }
