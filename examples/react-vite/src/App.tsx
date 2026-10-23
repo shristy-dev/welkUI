@@ -7,7 +7,6 @@ import {
   WelkButton,
   WelkCard,
   WelkDivider,
-  WelkIconButton,
   WelkMenu,
   WelkStickerCard,
   WelkSwitch,
