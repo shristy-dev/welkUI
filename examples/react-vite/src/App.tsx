@@ -38,8 +38,6 @@ const pages = [
 ];
 const sorted = [...catalogue].sort((a, b) => a.name.localeCompare(b.name));
 
-
-
 function Home() {
   return (
     <>

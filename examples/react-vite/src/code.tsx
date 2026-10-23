@@ -1,7 +1,5 @@
 import { useState } from "react";
-import {
-  WelkIconButton,
-} from "@welkui/react";
+import { WelkIconButton } from "@welkui/react";
 
 const tokenPattern =
   /(\/\*[\s\S]*?\*\/|\/\/[^\r\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`|<\/?[A-Za-z_$][\w$.-]*|\/?>|\b[A-Za-z_$][\w$]*\b|\b\d+(?:\.\d+)?\b|\s+|.)/g;
