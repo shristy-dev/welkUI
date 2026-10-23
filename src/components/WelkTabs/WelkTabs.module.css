@@ -1,0 +1,123 @@
+.tabs,
+.tabList,
+.tab,
+.panels,
+.panel {
+  box-sizing: border-box;
+}
+
+.tabs {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  color: var(--welk-color-ink);
+  font: 1rem/1.5 var(--welk-font-family);
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab {
+  padding: 0.55rem 1rem;
+  border: var(--welk-border);
+  border-radius: 10px 6px 9px 5px;
+  background: var(--welk-color-paper);
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab[aria-selected="true"] {
+  background: var(--welk-color-accent);
+}
+
+.withBg .tabList {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.5rem;
+  border: var(--welk-border);
+  border-radius: 12px 7px 15px 9px;
+  background: var(--welk-color-muted);
+}
+
+.withBg .tab {
+  border-color: transparent;
+  background: transparent;
+}
+
+.withBg .tab[aria-selected="true"] {
+  border-color: var(--welk-color-ink);
+  background: var(--welk-color-accent);
+  box-shadow: var(--welk-shadow);
+}
+
+.tab:hover:not(:disabled):not([aria-selected="true"]) {
+  background: var(--welk-color-muted);
+}
+
+.tab:focus-visible,
+.panel:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 3px;
+}
+
+.tab:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.panel {
+  padding: 1rem;
+  border: var(--welk-border);
+  border-radius: 12px 7px 15px 9px;
+  background: var(--welk-color-paper);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.vertical {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.vertical .tabList {
+  align-self: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.vertical .tab {
+  border-radius: 8px 5px 7px 4px;
+  text-align: left;
+}
+
+.vertical .panels {
+  flex: 1;
+  min-width: 0;
+}
+
+.vertical .panel {
+  height: 100%;
+}
+
+@media (forced-colors: active) {
+  .tab[aria-selected="true"],
+  .withBg .tab[aria-selected="true"] {
+    border-color: Highlight;
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  .tab:disabled {
+    color: GrayText;
+  }
+}

@@ -27,6 +27,7 @@ import {
   WelkSticker,
   WelkStickerCard,
   WelkSwitch,
+  WelkTabs,
   WelkTimePicker,
   WelkTooltip,
 } from "@welkui/react";
@@ -1232,6 +1233,117 @@ function examplesFor(name: ComponentName): Example[] {
               <WelkSwitch label="Locked off" disabled />
               <WelkSwitch label="Locked on" disabled defaultChecked />
             </div>
+          ),
+        },
+      ];
+    case "WelkTabs":
+      return [
+        ...(["horizontal", "vertical"] as const).map((orientation) => ({
+          title:
+            orientation === "horizontal"
+              ? "With background"
+              : "With background vertical",
+          description:
+            "Toggle-style tabs share a background and stay detached from the content panel.",
+          configuration: `variant="withBg" orientation="${orientation}"`,
+          preview: (
+            <WelkTabs
+              label="Mission sections"
+              variant="withBg"
+              orientation={orientation}
+              items={[
+                {
+                  label: "Overview",
+                  value: "overview",
+                  content: "A quick overview of your next mission.",
+                },
+                {
+                  label: "Objectives",
+                  value: "objectives",
+                  content: "Complete the mission and return safely.",
+                },
+                {
+                  label: "Locked",
+                  value: "locked",
+                  content: "This panel is not available.",
+                  disabled: true,
+                },
+              ]}
+            />
+          ),
+        })),
+        {
+          title: "Horizontal",
+          description: "The default layout for switching related panels.",
+          configuration: 'orientation="horizontal"',
+          preview: (
+            <WelkTabs
+              label="Mission sections"
+              items={[
+                {
+                  label: "Overview",
+                  value: "overview",
+                  content: "A quick overview of your next mission.",
+                },
+                {
+                  label: "Objectives",
+                  value: "objectives",
+                  content: "Complete the mission and return safely.",
+                },
+              ]}
+            />
+          ),
+        },
+        {
+          title: "Vertical",
+          description: "A side-by-side layout for longer tab labels or panels.",
+          configuration: 'orientation="vertical"',
+          preview: (
+            <WelkTabs
+              label="Mission sections"
+              orientation="vertical"
+              items={[
+                {
+                  label: "Overview",
+                  value: "overview",
+                  content: "A quick overview of your next mission.",
+                },
+                {
+                  label: "Objectives",
+                  value: "objectives",
+                  content: "Complete the mission and return safely.",
+                },
+              ]}
+            />
+          ),
+        },
+        {
+          title: "Disabled tab",
+          description: "Disabled tabs are skipped during keyboard navigation.",
+          configuration: "disabled",
+          preview: (
+            <WelkTabs
+              label="Mission sections"
+              defaultValue="objectives"
+              items={[
+                {
+                  label: "Overview",
+                  value: "overview",
+                  content: "A quick overview of your next mission.",
+                },
+                {
+                  label: "Objectives",
+                  value: "objectives",
+                  content: "Complete the mission and return safely.",
+                },
+                {
+                  label: "Locked",
+                  value: "locked",
+                  content: "This panel is not available.",
+                  disabled: true,
+                },
+              ]}
+            />
           ),
         },
       ];

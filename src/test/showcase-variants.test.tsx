@@ -118,6 +118,13 @@ const expectedTitles = {
   ],
   WelkStickerCard: ["Hover growth", "No growth", "With icon", "Disabled"],
   WelkSwitch: ["Off", "On", "Controlled feedback", "Disabled states"],
+  WelkTabs: [
+    "With background",
+    "With background vertical",
+    "Horizontal",
+    "Vertical",
+    "Disabled tab",
+  ],
   WelkTimePicker: ["Hours and minutes", "With seconds", "Empty", "Disabled"],
   WelkTooltip: ["bubble", "speech", "speach"],
 } satisfies Record<ComponentName, readonly string[]>;

@@ -880,6 +880,51 @@ export const componentDocs = {
     ],
     native: `${inputNative} type and role are fixed to checkbox and switch; size and children are omitted.`,
   },
+  WelkTabs: {
+    description:
+      "A styled, accessible tab list detached from its content panels by a small gap. It supports controlled or uncontrolled selection, disabled tabs, horizontal or vertical layout, and keyboard navigation.",
+    variants: [
+      "Default detached tabs or withBg toggle-style tabs on a shared background.",
+      "Both variants support horizontal (default) or vertical orientation and automatic activation.",
+    ],
+    props: [
+      label,
+      [
+        "items",
+        "readonly WelkTabItem[]",
+        "Required",
+        "Items: { label: ReactNode, value: string, content: ReactNode, disabled?: boolean }.",
+      ],
+      ["value", "string", "Uncontrolled", "Controlled selected tab value."],
+      [
+        "defaultValue",
+        "string",
+        "First enabled tab",
+        "Initially selected tab.",
+      ],
+      [
+        "onValueChange",
+        "(value: string) => void",
+        "Unset",
+        "Called when a tab is selected.",
+      ],
+      [
+        "variant",
+        '"default" | "withBg"',
+        '"default"',
+        "Detached buttons or toggle-style buttons on a shared background.",
+      ],
+      [
+        "orientation",
+        '"horizontal" | "vertical"',
+        '"horizontal"',
+        "Sets the tab layout and corresponding arrow-key direction.",
+      ],
+      className,
+    ],
+    native:
+      "Inherits div props except children, defaultValue and onChange; forwards a div ref. The required label names the tab list.",
+  },
   WelkTimePicker: {
     description:
       "An editable 24-hour time field with custom scrollable wheels showing three rows per column. Type a time or select hours/minutes using the wheels and keyboard. Use controlled value/onValueChange or uncontrolled defaultValue; an empty string clears the time.",
