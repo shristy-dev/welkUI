@@ -40,8 +40,7 @@ function TimeWheel({
     const option = wheel?.querySelector<HTMLElement>(`[data-value="${value}"]`);
     if (wheel && option)
       wheel.scrollTop =
-        option.offsetTop -
-        (wheel.clientHeight - option.clientHeight) / 2;
+        option.offsetTop - (wheel.clientHeight - option.clientHeight) / 2;
   }, [value]);
 
   return (
