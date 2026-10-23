@@ -1,0 +1,422 @@
+:root {
+  font-family: var(--welk-font-family);
+  color: var(--welk-color-ink);
+  background: var(--welk-color-paper);
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+a:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 4px;
+}
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: anywhere;
+}
+h1 {
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  line-height: 1.16;
+  letter-spacing: -0.05em;
+}
+h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.3;
+}
+p {
+  line-height: 1.75;
+}
+.site {
+  max-width: 1320px;
+  margin: auto;
+  padding: 0 2rem;
+}
+.siteHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+.brand {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  text-decoration: none;
+  transform: rotate(-3deg);
+}
+.brandLogo {
+  width: 2.75rem;
+  height: auto;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+.brand > span:first-of-type {
+  background: var(--welk-color-accent);
+}
+.brandDot {
+  color: #3057c4;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.main {
+  min-height: 65vh;
+  padding-top: 1.75rem;
+}
+.main:focus {
+  outline: none;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem 0 5rem;
+}
+.hero h1 span {
+  background: var(--welk-color-accent);
+}
+.reactBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.githubLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.githubLink img {
+  flex-shrink: 0;
+}
+.reactBrand img,
+.reactFeatureLogo {
+  object-fit: contain;
+}
+.lede {
+  max-width: 36rem;
+  font-size: 1.15rem;
+}
+.heroArt {
+  padding: 2rem 0;
+  min-width: 0;
+}
+.heroArt > .row {
+  margin-top: 3rem;
+  justify-content: center;
+}
+.section {
+  padding: 3rem 0;
+}
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.featureGrid,
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.surface {
+  min-width: 0;
+  padding: 1.5rem;
+  border: var(--welk-border);
+  border-radius: 15px 8px 18px 10px;
+  box-shadow: var(--welk-shadow);
+  background: white;
+}
+.previewGrid .surface {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.previewGrid h3 {
+  min-height: 3rem;
+}
+.cta {
+  text-align: center;
+  background: white;
+  padding: 3rem 1.5rem;
+  margin: 2rem 0 4rem;
+  border: var(--welk-border);
+  border-radius: 16px 9px 20px 10px;
+  box-shadow: var(--welk-shadow);
+}
+.explorer {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  gap: 3rem;
+  padding: 2rem 0 4rem;
+  align-items: start;
+}
+.componentNav {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 0.25rem;
+}
+.componentNav nav {
+  width: 100%;
+}
+.componentDetail {
+  min-width: 0;
+}
+.componentDetail h2 {
+  margin: 1rem 0;
+}
+.demoSurface {
+  min-height: 12rem;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+.codeBlock {
+  min-width: 0;
+}
+.codeToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+.copyFeedback {
+  min-height: 1.6em;
+  margin-block: 0.5rem;
+}
+.code {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1.5rem;
+  border: var(--welk-border);
+  border-radius: 9px 14px 8px 12px;
+  background: #242424;
+  color: #fffdf5;
+  line-height: 1.7;
+  font-size: 0.85rem;
+  tab-size: 2;
+}
+.code code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+.variantList {
+  padding-left: 1.25rem;
+  line-height: 1.8;
+}
+.variantList li + li {
+  margin-top: 0.5rem;
+}
+.variantGallery {
+  margin-bottom: 2.5rem;
+}
+.variantGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 1.5rem;
+}
+.variantExample {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.variantExample h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+.variantExample > p {
+  margin: 0;
+}
+.variantPreview {
+  min-width: 0;
+  padding: 1rem 0.25rem;
+  flex: 1;
+}
+.variantPreview > * {
+  max-width: 100%;
+}
+.variantConfiguration {
+  display: grid;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--welk-color-ink);
+}
+.variantConfiguration code {
+  font:
+    0.8rem/1.6 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.variantTooltip {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+}
+.stickerCardExample {
+  padding-block: 0.75rem;
+}
+.radioExampleGroup {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.radioExampleGroup legend {
+  margin-bottom: 0.75rem;
+}
+.setupGuide {
+  margin-top: 2rem;
+}
+.propsScroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border: var(--welk-border);
+  border-radius: 10px;
+  background: white;
+}
+.propsScroll:focus-visible {
+  outline: 3px solid var(--welk-color-focus);
+  outline-offset: 4px;
+}
+.propsTable {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.propsTable caption {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+}
+.propsTable th,
+.propsTable td {
+  padding: 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--welk-color-ink);
+  overflow-wrap: anywhere;
+}
+.propsTable thead {
+  background: var(--welk-color-accent);
+}
+.propsTable th:nth-child(1) {
+  width: 18%;
+}
+.propsTable th:nth-child(2) {
+  width: 27%;
+}
+.propsTable th:nth-child(3) {
+  width: 15%;
+}
+.propsTable code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+.finePrint {
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.stack {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+.tooltipDemo {
+  padding-top: 4rem;
+}
+.faq {
+  max-width: 52rem;
+  margin: auto;
+}
+.contributor {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 36rem;
+  margin-block: 2rem;
+}
+.contributor h2 {
+  margin-top: 0;
+}
+.footer {
+  padding-bottom: 2rem;
+}
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-block: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .heroArt {
+    max-width: 36rem;
+    width: 100%;
+    margin: auto;
+  }
+  .featureGrid,
+  .previewGrid {
+    grid-template-columns: 1fr;
+  }
+  .explorer {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site {
+    padding: 0 1rem;
+  }
+  .siteHeader {
+    gap: 1rem;
+  }
+  .siteHeader nav {
+    order: 3;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .hero {
+    padding-top: 1.5rem;
+  }
+  .explorer {
+    grid-template-columns: 1fr;
+  }
+  .componentNav {
+    position: static;
+    max-height: 18rem;
+  }
+  .surface,
+  .demoSurface {
+    padding: 1rem;
+  }
+}

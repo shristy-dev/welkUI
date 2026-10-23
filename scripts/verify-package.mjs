@@ -74,6 +74,7 @@ for (const name of [
   "WelkBadge",
   "WelkSwitch",
   "WelkDrawer",
+  "WelkMenu",
 ]) {
   const base = `dist/components/${name}/${name}`;
   assert.ok((await read(`${base}.js`)).startsWith('"use client";'));
@@ -157,6 +158,7 @@ assert.ok(!consumerCode.includes("WelkBreadCrumbs"));
 assert.ok(!consumerCode.includes("WelkBadge"));
 assert.ok(!consumerCode.includes("WelkSwitch"));
 assert.ok(!consumerCode.includes("WelkDrawer"));
+assert.ok(!consumerCode.includes("WelkMenu"));
 console.log(
   `Verified ${files.size} packaged files, stylesheet, declarations, client boundaries and tree shaking.`,
 );

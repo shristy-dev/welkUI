@@ -25,3 +25,4 @@ export * from "./WelkBreadCrumbs";
 export * from "./WelkBadge";
 export * from "./WelkSwitch";
 export * from "./WelkDrawer";
+export * from "./WelkMenu";

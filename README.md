@@ -5,6 +5,51 @@ The npm package is **`@welkui/react`**. The current GitHub repository remains
 `welkdock/welkUI`; renaming it to `welkui-react` is optional and requires updating
 the repository URL in [package.json](./package.json).
 
+## Menu / navbar
+
+```tsx
+import { WelkMenu } from "@welkui/react";
+
+<WelkMenu
+  variant="nested"
+  activeRoute="/heroes/superman"
+  items={[
+    { title: "Home", route: "/" },
+    {
+      title: "Heroes",
+      route: "/heroes",
+      children: [
+        { title: "Superman", route: "/heroes/superman" },
+        { title: "Batman", route: "/heroes/batman" },
+      ],
+    },
+  ]}
+/>;
+```
+
+The default variant renders a vertical menu of top-level routes:
+comic text separated by lines, with forward icons and no underlines.
+`variant="nested"` enables recursive child lists; items with children use a
+downward disclosure icon. Their dropdown includes a "Go to [title]" link so the
+parent route stays accessible. All child levels expand inline below their parent.
+`activeRoute` marks exact matching links as the current page.
+
+Uses native anchors and details/summary disclosures, not application-menu ARIA
+roles. Tab navigates links/triggers; Enter/Space toggles a disclosure; Escape
+closes the nearest open level and restores its trigger focus. Outside clicks,
+focus leaving the navigation and following a link dismiss open lists.
+Nav props/ref, `className` and a custom `aria-label` are supported. Routes use
+native navigation (no router dependency). Set `collapsible` to show an icon button
+that hides/shows the entire menu (expanded initially). Its accessible label and
+`aria-expanded` track the state. Escape closes the nearest child level first,
+then collapses the whole menu and focuses the toggle. Without `collapsible`,
+the entire menu stays visible. Width defaults to 18rem, capped at the container;
+use `style` or `className` to override it.
+The whole menu folds smoothly with a subtle comic squash/bounce and rotating
+toggle icon. Collapsed content is inert and hidden from assistive technology
+immediately, even during the closing animation. Reduced-motion preferences
+disable the transitions.
+
 ## Drawer
 
 ```tsx
@@ -775,6 +820,21 @@ pnpm --filter @welkui/example-nextjs dev
 
 The examples consume the built package through workspace links, not source aliases.
 Rebuild the library after changing its source. Generated output is not committed.
+The React + Vite demo is a four-page WelkUI showcase: landing (`#/`),
+alphabetical component explorer (`#/components/WelkButton`), FAQ (`#/faq`),
+and contributors (`#/contributors`). Each explorer entry shows one live component,
+a full description, all variants, a typed prop reference with defaults, native
+attribute support, and usage code with a clipboard copy button. Clipboard failures
+are displayed inline so code can still be selected and copied manually.
+Every component also has a visual gallery of real variants and states, with
+key-prop configurations, interactive modal/notification launchers where applicable,
+and component-specific accessibility guidance and pitfalls. The landing page uses
+the bundled React logo; no external image or UI dependency is required.
+Hash navigation supports direct links and browser
+history without server routing configuration. Contributor credits are a verified
+GitHub snapshot dated October 23, 2026; refresh them from the repository contributor
+list when updating the demo. Showcase integration tests resolve components to source;
+the actual Vite demo continues to consume the built package.
 Shared interaction primitives and hooks have reserved entry points; extract them
 when components actually need shared behavior.
 

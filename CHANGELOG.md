@@ -2,6 +2,18 @@
 
 ## 0.1.0 - Unreleased
 
+- Add interactive visual variant/state galleries for all 28 demo components,
+  expanded usage/accessibility guidance, and React branding on the landing page.
+
+- Add copyable usage snippets and full component descriptions, variant guides,
+  and typed prop references to every entry in the demo explorer.
+
+- Redesign the React demo as a WelkUI landing site with an alphabetical,
+  single-component explorer, concise code examples, FAQ and contributor credits.
+
+- Add WelkMenu navbar with comic text, line separators, forward icons and a
+  recursive nested disclosure variant with downward icons and native links.
+
 - Add WelkDrawer with four edge placements, comic slide animations, native modal
   focus management, Escape/close dismissal and optional backdrop dismissal.
 
