@@ -351,15 +351,27 @@ p {
   max-width: 52rem;
   margin: auto;
 }
-.contributor {
+.surface.contributor {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  max-width: 36rem;
-  margin-block: 2rem;
+  gap: 1rem;
+  max-width: 26rem;
+  margin-block: 1.5rem;
+  padding: 0.6rem 1rem;
+}
+.contributorName {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .contributor h2 {
-  margin-top: 0;
+  margin: 0;
+  font-size: 1.25rem;
+}
+.contributor p {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
 }
 .footer {
   padding-bottom: 2rem;

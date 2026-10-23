@@ -1,0 +1,59 @@
+name: 🐛 Bug report
+description: Something in WelkUI doesn't work or look right.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! Please search existing issues first.
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      placeholder: WelkDrawer
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal code or steps. A CodeSandbox / StackBlitz link is ideal.
+      render: tsx
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: "@welkui/react version"
+      placeholder: 0.1.0
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework
+      options:
+        - React + Vite
+        - Next.js (App Router)
+        - Next.js (Pages Router)
+        - Other
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and OS
+      placeholder: Chrome 140, macOS 15
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd like to work on a fix for this issue

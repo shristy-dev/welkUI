@@ -19,51 +19,23 @@ import { VariantGallery } from "./VariantGallery";
 import reactLogo from "../../../assets/images/react.svg.webp";
 import githubLogo from "../../../assets/images/github.svg";
 import welkuiLogo from "../../../assets/images/welkui-logo.png";
+import {
+  getServerPath,
+  getPath,
+  interceptLinkClicks,
+  navigate,
+  subscribe,
+} from "./router";
+import { applySeo, getSeo } from "./seo";
+import { faqs, repository } from "./siteContent";
 
-const repository = "https://github.com/welkdock/welkUI";
-const subscribe = (listener: () => void) => {
-  window.addEventListener("hashchange", listener);
-  return () => window.removeEventListener("hashchange", listener);
-};
-const snapshot = () => window.location.hash || "#/";
-const serverSnapshot = () => "#/";
 const pages = [
-  { title: "Home", route: "#/" },
-  { title: "Components", route: "#/components" },
-  { title: "FAQ", route: "#/faq" },
-  { title: "Contributors", route: "#/contributors" },
+  { title: "Home", route: "/" },
+  { title: "Components", route: "/components/" },
+  { title: "FAQ", route: "/faq/" },
+  { title: "Contributors", route: "/contributors/" },
 ];
 const sorted = [...catalogue].sort((a, b) => a.name.localeCompare(b.name));
-const faqs = [
-  [
-    "What is WelkUI?",
-    "A playful React + TypeScript component library with comic-inspired shapes, colors, and motion.",
-  ],
-  [
-    "Does it work with Next.js?",
-    'Yes. Interactive components preserve "use client" boundaries. Import the stylesheet once in your application layout.',
-  ],
-  [
-    "Can I use it before npm publishing?",
-    "Yes. Run pnpm build, then pnpm pack in the library repository. Install the resulting .tgz in your app.",
-  ],
-  [
-    "How do I style it?",
-    "Import @welkui/react/styles.css once. Override --welk-* CSS tokens for colors and typography; use component className/style props where supported.",
-  ],
-  [
-    "Is it keyboard accessible?",
-    "Components use native controls where possible, labeled interactions, focus indicators, and reduced-motion support. Test accessibility in your own app too.",
-  ],
-  [
-    "Does file attachment upload my files?",
-    "No. Files and previews stay local. Use onFilesChange to send selected files through your own upload flow.",
-  ],
-  [
-    "Where can I test more variants?",
-    "Use the Components page for focused examples, or run pnpm storybook in the repository for the full set of stories.",
-  ],
-];
 
 function Code({ children }: { children: string }) {
   const [copyState, setCopyState] = useState<
@@ -147,7 +119,7 @@ function Home() {
           <div className="row">
             <WelkButton
               onClick={() => {
-                window.location.hash = "#/components";
+                navigate("/components/");
               }}
             >
               Explore components
@@ -170,7 +142,7 @@ function Home() {
             subtitle="Your next great interface starts here."
             sticker={{ src: reactLogo, alt: "" }}
             onClick={() => {
-              window.location.hash = "#/components/WelkStickerCard";
+              navigate("/components/WelkStickerCard/");
             }}
           />
           <div className="row">
@@ -190,7 +162,7 @@ function Home() {
             title="Hand-drawn energy"
             subtitle="Uneven corners, bold outlines, cheerful colors. No bland defaults."
             onClick={() => {
-              window.location.hash = "#/components/WelkBadge";
+              navigate("/components/WelkBadge/");
             }}
           />
           <WelkCard
@@ -206,14 +178,14 @@ function Home() {
             }
             subtitle="Typed props, independent exports, and Next.js client boundaries."
             onClick={() => {
-              window.location.hash = "#/faq";
+              navigate("/faq/");
             }}
           />
           <WelkCard
             title="Thoughtful interactions"
             subtitle="Native controls, keyboard focus, and respect for reduced motion."
             onClick={() => {
-              window.location.hash = "#/components/WelkSwitch";
+              navigate("/components/WelkSwitch/");
             }}
           />
         </div>
@@ -251,7 +223,7 @@ function Home() {
         <WelkButton
           size="lg"
           onClick={() => {
-            window.location.hash = "#/components";
+            navigate("/components/");
           }}
         >
           Show more / test components
@@ -276,10 +248,10 @@ function Components({ name }: { name?: string }) {
           <WelkMenu
             aria-label="Component list"
             collapsible
-            activeRoute={`#/components/${entry?.name ?? ""}`}
+            activeRoute={`/components/${entry?.name ?? ""}/`}
             items={sorted.map((item) => ({
               title: item.name,
-              route: `#/components/${item.name}`,
+              route: `/components/${item.name}/`,
             }))}
           />
         </aside>
@@ -428,11 +400,13 @@ function Contributors() {
           size="md"
         />
         <div>
-          <h2>
-            <a href="https://github.com/No0b-master">No0b-master</a>
-          </h2>
+          <div className="contributorName">
+            <h2>
+              <a href="https://github.com/No0b-master">No0b-master</a>
+            </h2>
+            <WelkBadge size="sm">Contributor</WelkBadge>
+          </div>
           <p>4 repository contributions</p>
-          <WelkBadge>Contributor</WelkBadge>
         </div>
       </article>
       <p className="finePrint">
@@ -459,28 +433,35 @@ function Contributors() {
   );
 }
 
-export function App() {
-  const hash = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
-  const [, page = "", name] = hash.replace(/^#/, "").split("/");
+export function App({ path: renderPath }: { path?: string } = {}) {
+  const livePath = useSyncExternalStore(subscribe, getPath, getServerPath);
+  const path = renderPath ?? livePath;
+  const [page = "", name] = path.split("/").filter(Boolean);
   const current = page || "home";
+  const pageTitle = pages.find((item) => item.route === `/${page}/`)?.title;
   const mainRef = useRef<HTMLElement>(null);
   const firstRender = useRef(true);
   const [routeNotice, setRouteNotice] = useState("");
 
   useEffect(() => {
-    document.title = `${pages.find((item) => item.route === `#/${page}`)?.title ?? (page ? "Not found" : "Home")} | WelkUI`;
+    document.addEventListener("click", interceptLinkClicks);
+    return () => document.removeEventListener("click", interceptLinkClicks);
+  }, []);
+
+  useEffect(() => {
+    applySeo(getSeo(path));
     if (firstRender.current) {
       firstRender.current = false;
       return;
     }
     mainRef.current?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [hash, page]);
+  }, [path]);
 
   return (
     <div className="site">
       <header className="siteHeader">
-        <a className="brand" href="#/" aria-label="WelkUI home">
+        <a className="brand" href="/" aria-label="WelkUI home">
           <img className="brandLogo" src={welkuiLogo} alt="" />
           Welk<span>UI</span>
           <span className="brandDot">!</span>
@@ -490,8 +471,8 @@ export function App() {
             <WelkButton
               key={item.route}
               variant={
-                hash === item.route ||
-                (item.route !== "#/" && hash.startsWith(`${item.route}/`))
+                path === item.route ||
+                (item.route !== "/" && path.startsWith(item.route))
                   ? "primary"
                   : "ghost"
               }
@@ -501,9 +482,7 @@ export function App() {
                   ? "page"
                   : undefined
               }
-              onClick={() => {
-                window.location.hash = item.route;
-              }}
+              onClick={() => navigate(item.route)}
             >
               {item.title}
             </WelkButton>
@@ -522,12 +501,8 @@ export function App() {
         {current !== "home" && (
           <WelkBreadCrumbs
             items={[
-              { label: "Home", href: "#/" },
-              {
-                label:
-                  pages.find((item) => item.route === `#/${page}`)?.title ??
-                  "Not found",
-              },
+              { label: "Home", href: "/" },
+              { label: pageTitle ?? "Not found" },
             ]}
           />
         )}
@@ -556,7 +531,7 @@ export function App() {
             <p>Head back to the beginning.</p>
             <WelkButton
               onClick={() => {
-                window.location.hash = "#/";
+                navigate("/");
               }}
             >
               Go home

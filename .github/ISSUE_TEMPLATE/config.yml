@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Component explorer
+    url: https://ui.welkdock.com/components/
+    about: Live examples, props and usage for every component.
+  - name: ❓ FAQ
+    url: https://ui.welkdock.com/faq/
+    about: Answers to common questions.

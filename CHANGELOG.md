@@ -2,6 +2,15 @@
 
 ## 0.1.0 - Unreleased
 
+- Rewrite the README with a banner, badges, website screenshots and a
+  component overview; move detailed API notes to `docs/COMPONENTS.md`.
+  Expand the contribution guide with an issue-linked workflow and add issue
+  and pull request templates.
+
+- Add SEO to the demo website: clean pre-rendered URLs, per-page metadata,
+  canonical links, Open Graph/Twitter cards, JSON-LD, sitemap, robots.txt,
+  web manifest and a GitHub Pages deployment workflow.
+
 - Add interactive visual variant/state galleries for all 28 demo components,
   expanded usage/accessibility guidance, and React branding on the landing page.
 

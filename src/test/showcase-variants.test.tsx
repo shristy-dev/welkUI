@@ -250,10 +250,10 @@ describe("Visual variant galleries", () => {
       .getByRole("heading", { name: "Flat", level: 4 })
       .closest("article")!;
     const link = within(flat).getByRole("link", { name: "Components" });
-    const hash = window.location.hash;
+    const location = window.location.href;
     fireEvent.click(link);
     expect(link).toHaveAttribute("aria-current", "page");
-    expect(window.location.hash).toBe(hash);
+    expect(window.location.href).toBe(location);
     const toggle = screen.getByRole("button", { name: "Collapse menu" });
     fireEvent.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "false");

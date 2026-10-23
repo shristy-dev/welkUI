@@ -590,8 +590,8 @@ function examplesFor(name: ComponentName): Example[] {
       ];
     case "WelkBreadCrumbs": {
       const items = [
-        { label: "Guide", href: "#/components" },
-        { label: "Navigation", href: "#/components/WelkMenu" },
+        { label: "Guide", href: "/components/" },
+        { label: "Navigation", href: "/components/WelkMenu/" },
         { label: "Current page" },
       ];
       return [

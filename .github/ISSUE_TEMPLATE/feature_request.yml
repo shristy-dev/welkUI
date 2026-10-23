@@ -1,0 +1,40 @@
+name: 💡 Component or feature request
+description: Suggest a new component, prop or variant.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Request type
+      options:
+        - New component
+        - New prop or variant
+        - Theming
+        - Documentation / website
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API
+      description: Component name, props and a usage example.
+      render: tsx
+  - type: textarea
+    id: design
+    attributes:
+      label: Design and accessibility notes
+      description: Sketches, references, keyboard behavior, ARIA pattern.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd like to build this

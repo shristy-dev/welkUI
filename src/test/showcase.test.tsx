@@ -17,15 +17,15 @@ import { getComponentDocs } from "../../examples/react-vite/src/componentDocs";
 import githubLogo from "../../assets/images/github.svg";
 import welkuiLogo from "../../assets/images/welkui-logo.png";
 
-function navigate(hash: string) {
+function navigate(path: string) {
   act(() => {
-    window.history.replaceState(null, "", hash);
-    window.dispatchEvent(new HashChangeEvent("hashchange"));
+    window.history.replaceState(null, "", path);
+    window.dispatchEvent(new PopStateEvent("popstate"));
   });
 }
 
 beforeEach(() => {
-  window.history.replaceState(null, "", "#/");
+  window.history.replaceState(null, "", "/");
   vi.spyOn(window, "scrollTo").mockImplementation(() => {});
 });
 
@@ -86,7 +86,7 @@ describe("WelkUI showcase", () => {
 
   it("lists components alphabetically and shows one selected demo with usage", () => {
     const consoleError = vi.spyOn(console, "error");
-    navigate("#/components/WelkSwitch");
+    navigate("/components/WelkSwitch/");
     render(<App />);
     const links = within(
       screen.getByRole("navigation", { name: "Component list" }),
@@ -100,7 +100,7 @@ describe("WelkUI showcase", () => {
     expect(
       screen.queryByLabelText("Verification code"),
     ).not.toBeInTheDocument();
-    navigate("#/components/WelkInput");
+    navigate("/components/WelkInput/");
     expect(screen.getByLabelText("Hero name")).toBeInTheDocument();
     expect(screen.queryByRole("switch")).not.toBeInTheDocument();
     expect(document.querySelector("pre code")).toHaveTextContent(
@@ -117,12 +117,12 @@ describe("WelkUI showcase", () => {
 
   it("provides FAQ, verified contributor credits and not-found states", () => {
     render(<App />);
-    navigate("#/faq");
+    navigate("/faq/");
     fireEvent.click(screen.getByText("What is WelkUI?"));
     expect(
       screen.getByText("What is WelkUI?").closest("details"),
     ).toHaveAttribute("open");
-    navigate("#/contributors");
+    navigate("/contributors/");
     expect(screen.getByRole("link", { name: "No0b-master" })).toHaveAttribute(
       "href",
       "https://github.com/No0b-master",
@@ -133,11 +133,11 @@ describe("WelkUI showcase", () => {
       "https://avatars.githubusercontent.com/u/62955737?v=4",
     );
     expect(avatar.className).toContain("md");
-    navigate("#/components/Unknown");
+    navigate("/components/Unknown/");
     expect(
       screen.getByRole("heading", { name: "Component not found" }),
     ).toBeInTheDocument();
-    navigate("#/unknown");
+    navigate("/unknown/");
     expect(
       screen.getByRole("heading", { name: "This panel is missing." }),
     ).toBeInTheDocument();
@@ -146,7 +146,7 @@ describe("WelkUI showcase", () => {
   it("copies the exact displayed code and resets feedback on component navigation", async () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
-    navigate("#/components/WelkSwitch");
+    navigate("/components/WelkSwitch/");
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
     await screen.findByText("Code copied!");
@@ -156,7 +156,7 @@ describe("WelkUI showcase", () => {
     expect(
       screen.getByRole("button", { name: "Copy code again" }),
     ).toBeEnabled();
-    navigate("#/components/WelkButton");
+    navigate("/components/WelkButton/");
     expect(screen.queryByText("Code copied!")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Copy code" })).toBeEnabled();
   });
@@ -171,7 +171,7 @@ describe("WelkUI showcase", () => {
         ...navigator,
         clipboard: reason === "unavailable" ? undefined : { writeText },
       });
-      navigate("#/components/WelkInput");
+      navigate("/components/WelkInput/");
       render(<App />);
       fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
       await waitFor(() =>
@@ -187,7 +187,7 @@ describe("WelkUI showcase", () => {
   it.each(catalogue.map((entry) => entry.name))(
     "documents %s descriptions, variants and props",
     (name) => {
-      navigate(`#/components/${name}`);
+      navigate(`/components/${name}/`);
       render(<App />);
       const docs = getComponentDocs(name);
       expect(screen.getByText(docs.description)).toBeInTheDocument();

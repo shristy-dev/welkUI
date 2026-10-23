@@ -57,7 +57,7 @@ export const catalogue = [
   {
     name: "WelkBreadCrumbs",
     info: "A navigation trail. The final item is the current page; omit href for plain text.",
-    code: '<WelkBreadCrumbs items={[\n  { label: "Home", href: "#/" },\n  { label: "Components", href: "#/components" },\n  { label: "Current page" },\n]} />',
+    code: '<WelkBreadCrumbs items={[\n  { label: "Home", href: "/" },\n  { label: "Components", href: "/components/" },\n  { label: "Current page" },\n]} />',
   },
   {
     name: "WelkButton",
@@ -122,7 +122,7 @@ export const catalogue = [
   {
     name: "WelkMenu",
     info: "Vertical route list. nested expands children; collapsible adds an animated menu toggle.",
-    code: '<WelkMenu variant="nested" collapsible items={[\n  { title: "Home", route: "#/" },\n  { title: "Components", route: "#/components", children: [\n    { title: "Button", route: "#/components/WelkButton" },\n  ] },\n]} />',
+    code: '<WelkMenu variant="nested" collapsible items={[\n  { title: "Home", route: "/" },\n  { title: "Components", route: "/components/", children: [\n    { title: "Button", route: "/components/WelkButton/" },\n  ] },\n]} />',
   },
   {
     name: "WelkOTPInput",
@@ -226,8 +226,8 @@ export function ComponentDemo({ name }: { name: ComponentName }) {
       return (
         <WelkBreadCrumbs
           items={[
-            { label: "Home", href: "#/" },
-            { label: "Components", href: "#/components" },
+            { label: "Home", href: "/" },
+            { label: "Components", href: "/components/" },
             { label: "Current page" },
           ]}
         />
@@ -338,11 +338,11 @@ export function ComponentDemo({ name }: { name: ComponentName }) {
           variant="nested"
           collapsible
           items={[
-            { title: "Home", route: "#/" },
+            { title: "Home", route: "/" },
             {
               title: "Components",
-              route: "#/components",
-              children: [{ title: "Button", route: "#/components/WelkButton" }],
+              route: "/components/",
+              children: [{ title: "Button", route: "/components/WelkButton/" }],
             },
           ]}
         />
