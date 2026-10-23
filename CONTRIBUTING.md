@@ -84,7 +84,10 @@ pnpm test:watch
 ```
 
 Keep your branch current with `git fetch upstream && git rebase upstream/main`.
-The examples use the **built** library, so run `pnpm build` after changing `src/`.
+The React Vite showcase uses the component source during development, matching
+Storybook without requiring a rebuild after changing `src/`. Production showcase
+builds and the Next.js example use the **built** library, so run `pnpm build`
+before validating those.
 
 ## Branches, commits and pull requests
 

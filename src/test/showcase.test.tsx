@@ -34,6 +34,28 @@ afterEach(() => {
 });
 
 describe("WelkUI showcase", () => {
+  it("shows both tab variants in the main component preview and usage", () => {
+    render(<ComponentDemo name="WelkTabs" />);
+    const defaultTabs = screen.getByRole("tablist", {
+      name: "Mission information",
+    });
+    const backgroundTabs = screen.getByRole("tablist", {
+      name: "Mission information with background",
+    });
+    fireEvent.click(
+      within(backgroundTabs).getByRole("tab", { name: "Objectives" }),
+    );
+    expect(
+      within(backgroundTabs).getByRole("tab", { name: "Objectives" }),
+    ).toHaveAttribute("aria-selected", "true");
+    expect(
+      within(defaultTabs).getByRole("tab", { name: "Overview" }),
+    ).toHaveAttribute("aria-selected", "true");
+    expect(
+      catalogue.find((entry) => entry.name === "WelkTabs")?.code,
+    ).toContain('variant="withBg"');
+  });
+
   it("covers every public component exactly once", () => {
     const names = catalogue.map((entry) => entry.name).sort();
     expect(names).toEqual(

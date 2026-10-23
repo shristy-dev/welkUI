@@ -26,6 +26,7 @@ import {
   WelkSticker,
   WelkStickerCard,
   WelkSwitch,
+  WelkTabs,
   WelkTimePicker,
   WelkTooltip,
 } from "@welkui/react";
@@ -163,6 +164,11 @@ export const catalogue = [
     name: "WelkSwitch",
     info: "Regular pill switch with comic colors. Supports checked/onCheckedChange and native form props.",
     code: '<WelkSwitch label="Hero mode" defaultChecked\n  onCheckedChange={(checked) => console.log(checked)} />',
+  },
+  {
+    name: "WelkTabs",
+    info: "Detached tabs with default and withBg toggle-style variants. Supports controlled or uncontrolled selection and keyboard navigation.",
+    code: 'const items = [\n  { label: "Overview", value: "overview", content: "Mission overview." },\n  { label: "Objectives", value: "objectives", content: "Mission objectives." },\n];\n\n<WelkTabs label="Mission information" items={items} />\n<WelkTabs label="Mission information with background"\n  variant="withBg" items={items} />',
   },
   {
     name: "WelkTimePicker",
@@ -427,6 +433,46 @@ export function ComponentDemo({ name }: { name: ComponentName }) {
       );
     case "WelkSwitch":
       return <WelkSwitch label="Hero mode" defaultChecked />;
+    case "WelkTabs":
+      return (
+        <div className="stack">
+          {(["default", "withBg"] as const).map((variant) => (
+            <div key={variant}>
+              <p>
+                <strong>
+                  {variant === "default" ? "Default" : "With background"}
+                </strong>
+              </p>
+              <WelkTabs
+                label={
+                  variant === "default"
+                    ? "Mission information"
+                    : "Mission information with background"
+                }
+                variant={variant}
+                items={[
+                  {
+                    label: "Overview",
+                    value: "overview",
+                    content: "A quick overview of your next mission.",
+                  },
+                  {
+                    label: "Objectives",
+                    value: "objectives",
+                    content: "Complete the mission and return safely.",
+                  },
+                  {
+                    label: "Disabled",
+                    value: "disabled",
+                    content: "This tab is not currently available.",
+                    disabled: true,
+                  },
+                ]}
+              />
+            </div>
+          ))}
+        </div>
+      );
     case "WelkTimePicker":
       return <WelkTimePicker label="Mission time" defaultValue="14:30" />;
     case "WelkTooltip":

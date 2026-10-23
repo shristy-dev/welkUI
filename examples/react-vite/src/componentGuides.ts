@@ -137,6 +137,12 @@ export const componentGuides = {
     "checked/onCheckedChange is a convenient controlled boolean API. Native onChange is also available; defaultChecked leaves state with the input.",
     "The label is clickable and Space toggles the focused switch. Preserve a meaningful label in both states rather than changing its action name each time.",
   ],
+  WelkTabs: [
+    "Use tabs to switch between related panels in the same context. For navigation between different pages, use links or WelkMenu instead.",
+    "The tab list is separated from the panel by a small gap. Use variant=withBg for toggle-style tabs grouped on a shared background; both variants support vertical orientation.",
+    "Give the tab list an informative label and each tab a unique value. Use value/onValueChange for controlled selection or defaultValue for local state.",
+    "Arrow keys move between enabled tabs, Home and End jump to the first and last enabled tab, and selection follows focus. Vertical tabs use Up and Down.",
+  ],
   WelkTimePicker: [
     "Use 24-hour HH:mm strings, or HH:mm:ss when showSeconds is true. Empty string means no time. Supply values matching the chosen precision.",
     "Type directly or open the custom wheels; only three rows are visible in each column. Wheel selection and keyboard interaction update the same value.",
